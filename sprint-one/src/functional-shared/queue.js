@@ -26,7 +26,7 @@ queueMethods.enqueue = function(value) {
   this.sz++;
 };
 
-queueMethods.dequeue = function() {
+queueMethods.dequeue = function() { 
   var poppedItem = this.storage[this.counter];
   delete this.storage[this.counter]; 
 
