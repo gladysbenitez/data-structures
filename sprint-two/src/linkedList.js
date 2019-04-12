@@ -46,6 +46,12 @@ var Node = function(value) {
   return node;
 };
 
+
+
 /*
  * Complexity: What is the time complexity of the above functions?
+ add to tail: Constant time  O(1)
+ remove head: Constant time O(1)
+ contains: Linear time O(n)
+
  */
