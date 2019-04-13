@@ -9,7 +9,7 @@ var Graph = function() {
 Graph.prototype.addNode = function(node) {
   this.storage[node] = {};
   this.storage[node].value = node;
-  this.storage[node].edges = {};//[];
+  this.storage[node].edges = {};
 };
 
 // Return a boolean value indicating if the value passed to contains is represented in the graph.
@@ -24,10 +24,6 @@ Graph.prototype.contains = function(node) {
 
 // Removes a node from the graph.
 Graph.prototype.removeNode = function(node) {
-//   for (var key in this.storage[node].edges) { //this is looping through all edges object in the node we are checking to delete
-//     var edgeToRemove = this.storage[key].edges[node];
-//     this.removeEdge(node, 5);
-//   }
   delete this.storage[node];
   for ( var key in this.storage) {
     delete this.storage[key].edges[node];
@@ -50,10 +46,7 @@ Graph.prototype.addEdge = function(fromNode, toNode) {
 
 // Remove an edge between any two specified (by value) nodes.
 Graph.prototype.removeEdge = function(fromNode, toNode) {
-  console.log('args', fromNode, toNode);
-  console.log('is there and edges property', this.storage[fromNode].edges);
   delete this.storage[fromNode].edges[toNode];
-  console.log('this.storage[toNode].edges[fromNode] before delete', this.storage[toNode].edges[fromNode]);
   delete this.storage[toNode].edges[fromNode];
 
 };
