@@ -7,22 +7,22 @@ var HashTable = function() {
 
 HashTable.prototype.insert = function(k, v) {
   var index = getIndexBelowMaxForKey(k, this._limit);
-  var tuple = [[k,v]];
+  var tuple = [[k, v]];
   var addIt = true;
   var bucket = this._storage.get(index);
 
-  if (bucket === undefined){ // if the object  is empty.. do something
+  if (bucket === undefined) { // if the object  is empty.. do something
     this._storage.set(index, tuple);// we set a tuple inside our storage array and index position blah.. which 
   } else {
-    for ( var i = 0; i < bucket.length; i++ ) {// looping through the big array on the index of storage 
-      var currentTuple = bucket[i];// setting a variable for current tuple
-      if(currentTuple[0] === k ){
+    for ( var i = 0; i < bucket.length; i++ ) { // looping through the big array on the index of storage 
+      var currentTuple = bucket[i]; // setting a variable for current tuple
+      if (currentTuple[0] === k ) {
         addIt = false;
-        currentTuple = [k,v];
+        currentTuple = [k, v];
         bucket[i] = currentTuple;
       }
     }
-    if(addIt === true) {
+    if (addIt === true) {
       bucket.push([k, v]);
     }
   }
