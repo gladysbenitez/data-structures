@@ -7,13 +7,13 @@ var Set = function() {
 var setPrototype = {};
 
 setPrototype.add = function(item) {
-  var included =  false;
+  var included = false;
   for ( var i = 0; i < this._storage.length; i++ ) {
     if ( this._storage[i] === item ) {
       included = true;
     }
   }
-  if ( included === false  ) {
+  if ( included === false ) {
     this._storage.push(item);
     // console.log(this._storage[i])
   }
@@ -30,8 +30,8 @@ setPrototype.contains = function(item) {
 
 setPrototype.remove = function(item) {
   for ( var i = 0; i < this._storage.length; i++) {
-    if ( this._storage[i]=== item ) {
-      this._storage.splice(i,1);
+    if ( this._storage[i] === item ) {
+      this._storage.splice(i, 1);
     }
   }
 };
