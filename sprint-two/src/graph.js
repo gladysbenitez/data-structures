@@ -24,19 +24,19 @@ Graph.prototype.contains = function(node) {
 
 // Removes a node from the graph.
 Graph.prototype.removeNode = function(node) {
-  console.log('first time seeing edges', this.storage[node].edges);
-  for (var key in this.storage[node].edges) { //this is looping through all edges object in the node we are checking to delete
-    var edgeToRemove = this.storage[key].edges[node];
-    console.log('here is edgeToRemove >>>>>>>>>>>>>>>>>>>>>>', edgeToRemove);
-    console.log('node here', node);
-    this.removeEdge(node, 5);
-  }
+//   for (var key in this.storage[node].edges) { //this is looping through all edges object in the node we are checking to delete
+//     var edgeToRemove = this.storage[key].edges[node];
+//     this.removeEdge(node, 5);
+//   }
   delete this.storage[node];
+  for ( var key in this.storage) {
+    delete this.storage[key].edges[node];
+  }
 };
 
 // Returns a boolean indicating whether two specified nodes are connected.  Pass in the values contained in each of the two nodes.
 Graph.prototype.hasEdge = function(fromNode, toNode) {
-  if (this.storage[toNode].edges[fromNode]) {
+  if (this.storage[fromNode].edges[toNode]) {
     return true;
   }
   return false;
@@ -51,15 +51,18 @@ Graph.prototype.addEdge = function(fromNode, toNode) {
 // Remove an edge between any two specified (by value) nodes.
 Graph.prototype.removeEdge = function(fromNode, toNode) {
   console.log('args', fromNode, toNode);
-  console.log('is there and edges property   ', this.storage[fromNode].edges);
+  console.log('is there and edges property', this.storage[fromNode].edges);
   delete this.storage[fromNode].edges[toNode];
-  console.log('this.storage[toNode].edges[fromNode] before delete            ', this.storage[toNode].edges[fromNode]);
+  console.log('this.storage[toNode].edges[fromNode] before delete', this.storage[toNode].edges[fromNode]);
   delete this.storage[toNode].edges[fromNode];
 
 };
 
 // Pass in a callback which will be executed on each node of the graph.
 Graph.prototype.forEachNode = function(cb) {
+  for (let key of Object.keys(this.storage)) {
+    cb(key);
+  }
 };
 
 /*
